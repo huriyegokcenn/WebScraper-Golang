@@ -11,7 +11,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// HTML içeriğini çeken fonksiyon
 func htmlIndir(url string) (*http.Response, error) {
 	istek, hata := http.NewRequest("GET", url, nil)
 	if hata != nil {
@@ -26,7 +25,7 @@ func htmlIndir(url string) (*http.Response, error) {
 	return cevap, nil
 }
 
-// Veri çekme fonksiyonu
+
 func veriTopla(url string, islemYap func(*goquery.Document) (string, []string)) (string, string, []string, error) {
 	cevap, hata := htmlIndir(url)
 	if hata != nil {
@@ -44,7 +43,7 @@ func veriTopla(url string, islemYap func(*goquery.Document) (string, []string)) 
 	return strings.TrimSpace(baslik), aciklama, tarihler, nil
 }
 
-// Veriyi dosyaya kaydeden fonksiyon
+
 func dosyayaYaz(dosyaAdi string, baslik string, aciklama string, tarihler []string) error {
 	dosya, hata := os.Create(dosyaAdi)
 	if hata != nil {
@@ -61,7 +60,6 @@ func dosyayaYaz(dosyaAdi string, baslik string, aciklama string, tarihler []stri
 	return nil
 }
 
-// Menü
 func menuyuGoster() {
 	fmt.Println("\n--- Web Verisi Çekme Aracı ---")
 	fmt.Println("1 - The Hacker News'ten veri çek")
@@ -71,7 +69,7 @@ func menuyuGoster() {
 	fmt.Print("Seçiminizi yapınız: ")
 }
 
-// Ana Fonksiyon
+
 func main() {
 	klavye := bufio.NewReader(os.Stdin)
 
